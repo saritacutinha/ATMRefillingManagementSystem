@@ -21,7 +21,7 @@ namespace ATMRefillingManagementSystem
                 switch (option)
                 {
                     case 1:
-                        Console.WriteLine("Hi");
+                        Console.WriteLine("Add Refilling Details");
                         break;
                     case 2:
                         Console.WriteLine("Hello");
