@@ -1,37 +1,31 @@
 ﻿
-using System;
-using System.Dynamic;
+using ATMRefillingManagementSystem.Data;
+using ATMRefillingManagementSystem.Persistence;
+using Microsoft.Extensions.DependencyInjection;
+using ATMRefillingManagementSystem.Core;
+using System.Threading.Tasks;
 
 namespace ATMRefillingManagementSystem
 {
     class Program
     {
-        static void Main(string[] args)
+        
+        static async Task Main(string[] args)
         {
-            while (true)
-            {
-                Console.WriteLine("Main Menu\n");
-                Console.WriteLine("1. Add Refilling Details\n");
-                Console.WriteLine("2. Show Refilling Report\n");
-                Console.WriteLine("3. Exit\n");
+            var services = ConfigureServices();
+            var serviceProvider = services.BuildServiceProvider();
+            await serviceProvider.GetService<ATMRefillingManagementMenu>().DisplayMenuAsync();
+           
+        }
 
-                Console.WriteLine("Please choose option [1,2,3]:");
-                int option = Convert.ToInt32(Console.ReadLine());
-
-                switch (option)
-                {
-                    case 1:
-                        Console.WriteLine("Add Refilling Details");
-                        break;
-                    case 2:
-                        Console.WriteLine("Hello");
-                        break;
-                    case 3: Environment.Exit(0); break;
-                    default:
-                        Console.WriteLine("PLease Enter a valid Input\n");
-                        break;
-                }
-            }
+        private static IServiceCollection ConfigureServices()
+        {
+            IServiceCollection services = new ServiceCollection();
+            services.AddDbContext<ATMRefillingManagementSystemDbContext>();
+            services.AddTransient<IBankRepository, BankRepository>();
+            services.AddTransient<IBankRepository, BankRepository>();
+            services.AddTransient<ATMRefillingManagementMenu>();
+            return services;
         }
     }
 }

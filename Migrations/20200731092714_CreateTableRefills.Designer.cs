@@ -4,14 +4,16 @@ using ATMRefillingManagementSystem.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ATMRefillingManagementSystem.Migrations
 {
     [DbContext(typeof(ATMRefillingManagementSystemDbContext))]
-    partial class ATMRefillingManagementSystemDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200731092714_CreateTableRefills")]
+    partial class CreateTableRefills
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
