@@ -14,7 +14,7 @@ namespace ATMRefillingManagementSystem
         {
             var services = ConfigureServices();
             var serviceProvider = services.BuildServiceProvider();
-            await serviceProvider.GetService<ATMRefillingManagementMenu>().DisplayMenuAsync();
+            serviceProvider.GetService<ATMRefillingManagementMenu>().DisplayMenu();
            
         }
 
@@ -24,6 +24,7 @@ namespace ATMRefillingManagementSystem
             services.AddDbContext<ATMRefillingManagementSystemDbContext>();
             services.AddTransient<IBankRepository, BankRepository>();
             services.AddTransient<IBankRepository, BankRepository>();
+            services.AddTransient<IRefillRepository, RefillRepository>();
             services.AddTransient<ATMRefillingManagementMenu>();
             return services;
         }

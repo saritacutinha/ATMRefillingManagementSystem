@@ -1,26 +1,27 @@
 ﻿using ATMRefillingManagementSystem.Core;
 using ATMRefillingManagementSystem.Core.Models;
 using ATMRefillingManagementSystem.Data;
-using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace ATMRefillingManagementSystem.Persistence
 {
-    public class BankRepository : IBankRepository
+   public  class RefillRepository :IRefillRepository
     {
         private ATMRefillingManagementSystemDbContext db;
 
-        public BankRepository(ATMRefillingManagementSystemDbContext db)
+        public RefillRepository(ATMRefillingManagementSystemDbContext db)
         {
             this.db = db;
         }
-        public List<Bank> GetBankDetails()
+
+        public string AddRefillRecord(Refill refillRecord)
         {
-            return  db.Banks.ToList();
+            db.Refills.Add(refillRecord);
+            db.SaveChanges();
+            return refillRecord.Key;
+
         }
     }
 }

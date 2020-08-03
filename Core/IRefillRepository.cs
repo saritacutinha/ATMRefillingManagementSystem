@@ -2,14 +2,11 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace ATMRefillingManagementSystem.Core
 {
-    public interface IBankRepository
+    public interface IRefillRepository
     {
-      
-            List<Bank> GetBankDetails();
-      
+        public string AddRefillRecord(Refill refillRecord);
     }
 }
