@@ -66,7 +66,13 @@ namespace ATMRefillingManagementSystem
                 Console.WriteLine("Enter the area for refilling:");
                 refillRecord.Area = Console.ReadLine();
                 Console.WriteLine("Enter the amount for refilling:");
-                refillRecord.Amount = Convert.ToInt32(Console.ReadLine());
+                int amount = Convert.ToInt32(Console.ReadLine());
+                while (amount < 0)
+                {
+                    Console.WriteLine("Entered amount cannot be negative\n");
+                    amount = Convert.ToInt32(Console.ReadLine());
+                }
+                refillRecord.Amount = amount;
                 Console.WriteLine("Enter Refilling Date:(MM/DD/YYYY)");
                 string refillDateInput = Console.ReadLine();
                 while (!DateTime.TryParseExact(refillDateInput, format, enUS, DateTimeStyles.None, out validRefillDate))
