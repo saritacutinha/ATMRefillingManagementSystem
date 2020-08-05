@@ -1,6 +1,7 @@
 ﻿using ATMRefillingManagementSystem.Core;
 using ATMRefillingManagementSystem.Core.Models;
 using System;
+using System.Globalization;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
@@ -21,6 +22,7 @@ namespace ATMRefillingManagementSystem
 
         public void DisplayMenu()
         {
+            CultureInfo enUS = new CultureInfo("en-US");
             while (true)
             {
                 Console.WriteLine("Main Menu\n");
@@ -50,6 +52,8 @@ namespace ATMRefillingManagementSystem
             void AddRefillingDetails()
             {
                 var refillRecord = new Refill();
+                var format = new[] { "MM/dd/yyyy" };
+                DateTime validRefillDate;
                 DisplayBankDetails();
                 int id = Convert.ToInt32(Console.ReadLine());
                 while (!bankIdArray.Contains(id))
@@ -64,7 +68,13 @@ namespace ATMRefillingManagementSystem
                 Console.WriteLine("Enter the amount for refilling:");
                 refillRecord.Amount = Convert.ToInt32(Console.ReadLine());
                 Console.WriteLine("Enter Refilling Date:(MM/DD/YYYY)");
-                refillRecord.RefillDate = Convert.ToDateTime(Console.ReadLine());
+                string refillDateInput = Console.ReadLine();
+                while (!DateTime.TryParseExact(refillDateInput, format, enUS, DateTimeStyles.None, out validRefillDate))
+                {                    
+                    Console.WriteLine("The date format should be in the MM/DD/YYYY format");
+                    refillDateInput = Console.ReadLine();
+                }
+                refillRecord.RefillDate = validRefillDate;
                 string key = refillDb.AddRefillRecord(refillRecord);
                 Console.WriteLine("The ATM refilling details have been saved successfully and the refilling id is " + key);
             }
@@ -87,16 +97,7 @@ namespace ATMRefillingManagementSystem
                 Console.Write("]\n");
             }
 
-            void  ValidateBankId(int id)
-            {
-               if (!bankIdArray.Contains(id))
-                {
-                    Console.WriteLine("Error Message: Invalid Bank");
-                    DisplayBankDetails();
-
-                }
-
-            }
+           
         }
 
      
