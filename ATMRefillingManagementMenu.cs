@@ -1,5 +1,6 @@
 ﻿using ATMRefillingManagementSystem.Core;
 using ATMRefillingManagementSystem.Core.Models;
+using ConsoleTables;
 using System;
 using System.Globalization;
 using System.Linq;
@@ -40,7 +41,8 @@ namespace ATMRefillingManagementSystem
                         AddRefillingDetails();
                         break;
                     case 2:
-                        Console.WriteLine("Hello");
+                        Console.WriteLine("Show Refilling Report");
+                        showRefillingReport();
                         break;
                     case 3: Environment.Exit(0); break;
                     default:
@@ -103,9 +105,29 @@ namespace ATMRefillingManagementSystem
                 Console.Write("]\n");
             }
 
+
+            void showRefillingReport()
+            {
+                Console.WriteLine("Enter the month:");
+                int month = Convert.ToInt32(Console.ReadLine());
+                while (month > 12)
+                {
+                    Console.WriteLine("Enter a valid month\n");
+                    month = Convert.ToInt32(Console.ReadLine());
+                }
+                ReportTable(month);
+
+            }
+
            
         }
 
-     
+        private void ReportTable(int month)
+        {
+            int year = DateTime.Now.Year;
+            DateTime date = new DateTime(year, month, 1);
+            string formatdate = date.ToString("MMMM yyyy");
+            var table = new ConsoleTable("Report for the month of "+formatdate);
+        }
     }
 }

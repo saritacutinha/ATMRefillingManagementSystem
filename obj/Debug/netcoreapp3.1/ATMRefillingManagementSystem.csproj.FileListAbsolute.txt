@@ -46,3 +46,4 @@ C:\Users\sarit\Documents\GitHub\ATMRefillingManagementSystem\bin\Debug\netcoreap
 C:\Users\sarit\Documents\GitHub\ATMRefillingManagementSystem\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.0\System.Runtime.Caching.dll
 C:\Users\sarit\Documents\GitHub\ATMRefillingManagementSystem\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
 C:\Users\sarit\Documents\GitHub\ATMRefillingManagementSystem\obj\Debug\netcoreapp3.1\ATMRefillingManagementSystem.csproj.CopyComplete
+C:\Users\sarit\Documents\GitHub\ATMRefillingManagementSystem\bin\Debug\netcoreapp3.1\ConsoleTables.dll
